@@ -1,6 +1,12 @@
 # FunKiiUNETThingy
 A .NET Program to make it easier to download WiiU Titles from Nintendo CDN.
 
+Microsoft .NET Framework 4.5 is required to be installed for this application!  
+https://www.microsoft.com/en-au/download/details.aspx?id=30653
+
+You also need the URL of "that key site" for wiiu for the program to download titles.  
+Hint: Try Googling for: "WiiU Title Key"  
+
 v1.0  
 "You're my Guinea Pig" edition.  
 Code is messy and uncommented and there are probably some bugs I have missed.
