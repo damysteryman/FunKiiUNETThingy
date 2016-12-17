@@ -14,4 +14,5 @@ v1.0
 Code is messy and uncommented and there are probably some bugs I have missed.
 
 Based on (and expanded upon) the python tool FunKiiU v2.2 by cearp and the cerea1killer:  
+http://gbatemp.net/threads/release-funkiiu-2-0-complete-content-ticket-python-tool.446092/  
 https://github.com/llakssz/FunKiiU
