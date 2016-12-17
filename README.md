@@ -1,6 +1,8 @@
 # FunKiiUNETThingy
 A .NET Program to make it easier to download WiiU Titles from Nintendo CDN.
 
+![Screenshot](/screenshot.png?raw=true "Screenshot")
+
 Microsoft .NET Framework 4.5 is required to be installed for this application!  
 https://www.microsoft.com/en-au/download/details.aspx?id=30653
 
