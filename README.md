@@ -1,5 +1,6 @@
 # FunKiiUNETThingy
-A .NET Program to make it easier to download WiiU Titles from Nintendo CDN.
+A .NET Program to make it easier to download WiiU Titles from Nintendo CDN.  
+https://gbatemp.net/threads/release-funkiiunetthingy.453460/  
 
 ![Screenshot](/screenshot.png?raw=true "Screenshot")
 
