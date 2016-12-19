@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.IO;
 
 namespace FunKiiUNETThingy
 {
@@ -98,6 +99,13 @@ namespace FunKiiUNETThingy
                 }
             }
             return byteNum.ToString() + " " + suffix;
+        }
+
+        public static long GetFileLength(this string filePath)
+        {
+            FileInfo fi = new FileInfo(filePath);
+
+            return fi.Length;
         }
     }
 }

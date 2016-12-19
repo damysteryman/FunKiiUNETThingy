@@ -24,11 +24,11 @@ namespace FunKiiUNETThingy
         public bool TicketIsAvailable { get; set; }
 
         [JsonConstructor]
-        protected TitleData(string _titleID, string _titleKey, string name, string region, string ticket)
+        public TitleData(string _titleID, string _titleKey, string name, string region, string ticket)
         {
-            if (name == null)
+            if (name == null || name == "")
                 name = "UNKNOWN_TITLE";
-            if (region == null)
+            if (region == null || region == "")
                 region = "UNK";
 
             TitleID = _titleID;

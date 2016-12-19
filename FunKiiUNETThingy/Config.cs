@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FunKiiUNETThingy
 {
-    class Config
+    public class Config
     {
         public string keysite { get; set; }
 
@@ -30,7 +30,11 @@ namespace FunKiiUNETThingy
         public bool patchDemoTimeLimit { get; set; }
         public bool patchDlcUnlock { get; set; }
 
-        
+        public bool appAutoUpdateTitlekeys { get; set; }
+        public bool appAutoLoadData { get; set; }
+
+        public bool appDlIgnoreExistingContentFiles { get; set; }
+        public bool appDlGroupDlsIntoSubfolders { get; set; }
 
         private const string CONFIG_KEYSITE = "keysite";
 
@@ -52,6 +56,12 @@ namespace FunKiiUNETThingy
 
         private const string CONFIG_PATCH_DEMO = "patchDemoTimeLimit";
         private const string CONFIG_PATCH_DLC = "patchDlcUnlock";
+
+        private const string CONFIG_APP_AUTOUPDATE_TITLEKEYS = "appAutoUpdateTitlekeys";
+        private const string CONFIG_APP_AUTOLOAD_DATA = "appAutoLoadData";
+
+        private const string CONFIG_DL_IGNORE_EXISTING = "appDlIgnoreExistingContentFiles";
+        private const string CONFIG_DL_GROUP_TITLES = "appDlGroupDlsIntoSubfolders";
 
         private const string BLANK_CONFIG = @"{""keysite"": """"}";
 
@@ -78,6 +88,11 @@ namespace FunKiiUNETThingy
 
             patchDemoTimeLimit = true;
             patchDlcUnlock = true;
+
+            appAutoUpdateTitlekeys = false;
+            appAutoLoadData = false;
+            appDlIgnoreExistingContentFiles = true;
+            appDlGroupDlsIntoSubfolders = false;
         }
 
         public Config
@@ -98,7 +113,11 @@ namespace FunKiiUNETThingy
             bool _regTwn,
             bool _regUnk,
             bool _patchDemoTimeLimit,
-            bool _patchDlcUnlock
+            bool _patchDlcUnlock,
+            bool _appAutoUpdateTitlekeys,
+            bool _appAutoLoadData,
+            bool _appDlIgnoreExistingContentFiles,
+            bool _appDlGroupDlsIntoSubfolders
             )
         {
             keysite = _keysite;
@@ -121,6 +140,12 @@ namespace FunKiiUNETThingy
 
             patchDemoTimeLimit = _patchDemoTimeLimit;
             patchDlcUnlock = _patchDlcUnlock;
+
+            appAutoUpdateTitlekeys = _appAutoUpdateTitlekeys;
+            appAutoLoadData = _appAutoLoadData;
+
+            appDlIgnoreExistingContentFiles = _appDlIgnoreExistingContentFiles;
+            appDlGroupDlsIntoSubfolders = _appDlGroupDlsIntoSubfolders;
         }
 
         public Config(string fileName)
@@ -218,6 +243,28 @@ namespace FunKiiUNETThingy
                     patchDlcUnlock = config[CONFIG_PATCH_DLC];
                 else
                     patchDlcUnlock = true;
+
+                // Check app configs have data
+
+                if (config[CONFIG_APP_AUTOUPDATE_TITLEKEYS] != null)
+                    appAutoUpdateTitlekeys = config[CONFIG_APP_AUTOUPDATE_TITLEKEYS];
+                else
+                    appAutoUpdateTitlekeys = false;
+
+                if (config[CONFIG_APP_AUTOLOAD_DATA] != null)
+                    appAutoLoadData = config[CONFIG_APP_AUTOLOAD_DATA];
+                else
+                    appAutoLoadData = false;
+
+                if (config[CONFIG_DL_IGNORE_EXISTING] != null)
+                    appDlIgnoreExistingContentFiles = config[CONFIG_DL_IGNORE_EXISTING];
+                else
+                    appDlIgnoreExistingContentFiles = true;
+
+                if (config[CONFIG_DL_GROUP_TITLES] != null)
+                    appDlGroupDlsIntoSubfolders = config[CONFIG_DL_GROUP_TITLES];
+                else
+                    appDlGroupDlsIntoSubfolders = false;
             }
             catch (Exception)
             {

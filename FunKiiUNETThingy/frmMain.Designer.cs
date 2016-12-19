@@ -72,14 +72,28 @@
             this.lblTitleTotalSize = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.lblManualNameError = new System.Windows.Forms.Label();
+            this.lblManualTitleIDError = new System.Windows.Forms.Label();
+            this.lblManualTitleKeyError = new System.Windows.Forms.Label();
+            this.btnManualAdd = new System.Windows.Forms.Button();
+            this.txtManualName = new System.Windows.Forms.TextBox();
+            this.cboManualRegion = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtManualID = new System.Windows.Forms.TextBox();
+            this.txtManualTitleKey = new System.Windows.Forms.TextBox();
+            this.lblAppTitle = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblAuthor = new System.Windows.Forms.Label();
             this.pbxPicture = new System.Windows.Forms.PictureBox();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTitles)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -91,13 +105,14 @@
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(7, 59);
+            this.btnLoad.Location = new System.Drawing.Point(103, 59);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(79, 89);
             this.btnLoad.TabIndex = 0;
@@ -126,7 +141,7 @@
             this.dgvTitles.AllowUserToAddRows = false;
             this.dgvTitles.AllowUserToDeleteRows = false;
             this.dgvTitles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTitles.Location = new System.Drawing.Point(10, 169);
+            this.dgvTitles.Location = new System.Drawing.Point(10, 193);
             this.dgvTitles.MultiSelect = false;
             this.dgvTitles.Name = "dgvTitles";
             this.dgvTitles.ReadOnly = true;
@@ -378,11 +393,11 @@
             // 
             // btnTitleKeyFileDownload
             // 
-            this.btnTitleKeyFileDownload.Location = new System.Drawing.Point(103, 59);
+            this.btnTitleKeyFileDownload.Location = new System.Drawing.Point(7, 59);
             this.btnTitleKeyFileDownload.Name = "btnTitleKeyFileDownload";
             this.btnTitleKeyFileDownload.Size = new System.Drawing.Size(79, 89);
             this.btnTitleKeyFileDownload.TabIndex = 21;
-            this.btnTitleKeyFileDownload.Text = "Update titlekeys.json file";
+            this.btnTitleKeyFileDownload.Text = "Download / Update titlekeys.json file";
             this.btnTitleKeyFileDownload.UseVisualStyleBackColor = true;
             this.btnTitleKeyFileDownload.Click += new System.EventHandler(this.btnTitleKeyFileDownload_Click);
             // 
@@ -390,7 +405,7 @@
             // 
             this.groupBox3.Controls.Add(this.chkDemoTimeLimit);
             this.groupBox3.Controls.Add(this.chkDlcUnlock);
-            this.groupBox3.Location = new System.Drawing.Point(595, 5);
+            this.groupBox3.Location = new System.Drawing.Point(591, 29);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(174, 54);
             this.groupBox3.TabIndex = 22;
@@ -469,9 +484,9 @@
             this.groupBox5.Controls.Add(this.btnLoad);
             this.groupBox5.Controls.Add(this.txtKeySiteUrl);
             this.groupBox5.Controls.Add(this.btnTitleKeyFileDownload);
-            this.groupBox5.Location = new System.Drawing.Point(10, 5);
+            this.groupBox5.Location = new System.Drawing.Point(10, 29);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(193, 158);
+            this.groupBox5.Size = new System.Drawing.Size(190, 158);
             this.groupBox5.TabIndex = 30;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "TitleKey Options";
@@ -481,7 +496,7 @@
             this.groupBox6.Controls.Add(this.groupBox2);
             this.groupBox6.Controls.Add(this.groupBox4);
             this.groupBox6.Controls.Add(this.groupBox1);
-            this.groupBox6.Location = new System.Drawing.Point(210, 5);
+            this.groupBox6.Location = new System.Drawing.Point(206, 29);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(379, 158);
             this.groupBox6.TabIndex = 31;
@@ -491,7 +506,7 @@
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.txtLog);
-            this.groupBox7.Location = new System.Drawing.Point(10, 556);
+            this.groupBox7.Location = new System.Drawing.Point(10, 580);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(517, 156);
             this.groupBox7.TabIndex = 32;
@@ -506,7 +521,7 @@
             this.groupBox8.Controls.Add(this.lblProgressData);
             this.groupBox8.Controls.Add(this.lblProgressContent);
             this.groupBox8.Controls.Add(this.lblProgressTitle);
-            this.groupBox8.Location = new System.Drawing.Point(528, 556);
+            this.groupBox8.Location = new System.Drawing.Point(528, 580);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(517, 156);
             this.groupBox8.TabIndex = 33;
@@ -534,97 +549,221 @@
             // 
             this.groupBox9.Controls.Add(this.lbxTitleQueue);
             this.groupBox9.Controls.Add(this.btnDownload);
-            this.groupBox9.Location = new System.Drawing.Point(761, 169);
+            this.groupBox9.Location = new System.Drawing.Point(761, 193);
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.Size = new System.Drawing.Size(284, 387);
             this.groupBox9.TabIndex = 34;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Title Queue";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1053, 24);
+            this.menuStrip1.TabIndex = 43;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "&File";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Settings...";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 16);
+            this.label2.Location = new System.Drawing.Point(6, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(122, 13);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "FunKiiUNETThingy v1.0";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 44;
+            this.label2.Text = "TitleKey:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 29);
+            this.label3.Location = new System.Drawing.Point(4, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 13);
-            this.label3.TabIndex = 36;
-            this.label3.Text = "\"You\'re my Guinea Pig\" Edition";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 45;
+            this.label3.Text = "TitleID:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 42);
+            this.label4.Location = new System.Drawing.Point(219, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 13);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "by damysteryman";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 46;
+            this.label4.Text = "Name:";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.lblManualNameError);
+            this.groupBox10.Controls.Add(this.lblManualTitleIDError);
+            this.groupBox10.Controls.Add(this.lblManualTitleKeyError);
+            this.groupBox10.Controls.Add(this.btnManualAdd);
+            this.groupBox10.Controls.Add(this.txtManualName);
+            this.groupBox10.Controls.Add(this.cboManualRegion);
+            this.groupBox10.Controls.Add(this.label5);
+            this.groupBox10.Controls.Add(this.txtManualID);
+            this.groupBox10.Controls.Add(this.txtManualTitleKey);
+            this.groupBox10.Controls.Add(this.label2);
+            this.groupBox10.Controls.Add(this.label4);
+            this.groupBox10.Controls.Add(this.label3);
+            this.groupBox10.Location = new System.Drawing.Point(590, 84);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(451, 103);
+            this.groupBox10.TabIndex = 47;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Manual Title Add";
+            // 
+            // lblManualNameError
+            // 
+            this.lblManualNameError.AutoSize = true;
+            this.lblManualNameError.Location = new System.Drawing.Point(263, 19);
+            this.lblManualNameError.Name = "lblManualNameError";
+            this.lblManualNameError.Size = new System.Drawing.Size(0, 13);
+            this.lblManualNameError.TabIndex = 55;
+            // 
+            // lblManualTitleIDError
+            // 
+            this.lblManualTitleIDError.AutoSize = true;
+            this.lblManualTitleIDError.Location = new System.Drawing.Point(54, 57);
+            this.lblManualTitleIDError.Name = "lblManualTitleIDError";
+            this.lblManualTitleIDError.Size = new System.Drawing.Size(0, 13);
+            this.lblManualTitleIDError.TabIndex = 54;
+            // 
+            // lblManualTitleKeyError
+            // 
+            this.lblManualTitleKeyError.AutoSize = true;
+            this.lblManualTitleKeyError.Location = new System.Drawing.Point(54, 19);
+            this.lblManualTitleKeyError.Name = "lblManualTitleKeyError";
+            this.lblManualTitleKeyError.Size = new System.Drawing.Size(0, 13);
+            this.lblManualTitleKeyError.TabIndex = 53;
+            // 
+            // btnManualAdd
+            // 
+            this.btnManualAdd.Location = new System.Drawing.Point(306, 72);
+            this.btnManualAdd.Name = "btnManualAdd";
+            this.btnManualAdd.Size = new System.Drawing.Size(136, 23);
+            this.btnManualAdd.TabIndex = 52;
+            this.btnManualAdd.Text = "Add to Download Queue";
+            this.btnManualAdd.UseVisualStyleBackColor = true;
+            this.btnManualAdd.Click += new System.EventHandler(this.btnManualAdd_Click);
+            // 
+            // txtManualName
+            // 
+            this.txtManualName.Location = new System.Drawing.Point(222, 34);
+            this.txtManualName.Name = "txtManualName";
+            this.txtManualName.Size = new System.Drawing.Size(220, 20);
+            this.txtManualName.TabIndex = 51;
+            // 
+            // cboManualRegion
+            // 
+            this.cboManualRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboManualRegion.FormattingEnabled = true;
+            this.cboManualRegion.Location = new System.Drawing.Point(200, 73);
+            this.cboManualRegion.Name = "cboManualRegion";
+            this.cboManualRegion.Size = new System.Drawing.Size(95, 21);
+            this.cboManualRegion.TabIndex = 50;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 68);
+            this.label5.Location = new System.Drawing.Point(197, 57);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(156, 13);
-            this.label5.TabIndex = 38;
-            this.label5.Text = "Based on (and expanded upon)";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 49;
+            this.label5.Text = "Region:";
+            // 
+            // txtManualID
+            // 
+            this.txtManualID.Location = new System.Drawing.Point(7, 74);
+            this.txtManualID.Name = "txtManualID";
+            this.txtManualID.Size = new System.Drawing.Size(127, 20);
+            this.txtManualID.TabIndex = 48;
+            // 
+            // txtManualTitleKey
+            // 
+            this.txtManualTitleKey.Location = new System.Drawing.Point(7, 34);
+            this.txtManualTitleKey.Name = "txtManualTitleKey";
+            this.txtManualTitleKey.Size = new System.Drawing.Size(209, 20);
+            this.txtManualTitleKey.TabIndex = 47;
+            // 
+            // lblAppTitle
+            // 
+            this.lblAppTitle.AutoSize = true;
+            this.lblAppTitle.Location = new System.Drawing.Point(893, 29);
+            this.lblAppTitle.Name = "lblAppTitle";
+            this.lblAppTitle.Size = new System.Drawing.Size(81, 13);
+            this.lblAppTitle.TabIndex = 48;
+            this.lblAppTitle.Text = "AppTitleVersion";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 81);
+            this.label6.Location = new System.Drawing.Point(893, 42);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 39;
-            this.label6.Text = "FunKiiU v2.2";
+            this.label6.Size = new System.Drawing.Size(153, 26);
+            this.label6.TabIndex = 49;
+            this.label6.Text = "\"You\'re still my Guinea Pig\" Edition";
             // 
-            // label7
+            // lblAuthor
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 94);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(144, 13);
-            this.label7.TabIndex = 40;
-            this.label7.Text = "by cearp and the cerea1killer";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.label5);
-            this.groupBox10.Controls.Add(this.label2);
-            this.groupBox10.Controls.Add(this.label7);
-            this.groupBox10.Controls.Add(this.label3);
-            this.groupBox10.Controls.Add(this.label6);
-            this.groupBox10.Controls.Add(this.label4);
-            this.groupBox10.Location = new System.Drawing.Point(875, 5);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(170, 126);
-            this.groupBox10.TabIndex = 41;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "About";
+            this.lblAuthor.AutoSize = true;
+            this.lblAuthor.Location = new System.Drawing.Point(893, 68);
+            this.lblAuthor.Name = "lblAuthor";
+            this.lblAuthor.Size = new System.Drawing.Size(37, 13);
+            this.lblAuthor.TabIndex = 50;
+            this.lblAuthor.Text = "author";
             // 
             // pbxPicture
             // 
-            this.pbxPicture.Location = new System.Drawing.Point(773, 59);
+            this.pbxPicture.Location = new System.Drawing.Point(823, 25);
             this.pbxPicture.Name = "pbxPicture";
-            this.pbxPicture.Size = new System.Drawing.Size(96, 96);
-            this.pbxPicture.TabIndex = 42;
+            this.pbxPicture.Size = new System.Drawing.Size(64, 64);
+            this.pbxPicture.TabIndex = 51;
             this.pbxPicture.TabStop = false;
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Text = "&About...";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1053, 721);
+            this.ClientSize = new System.Drawing.Size(1053, 745);
             this.Controls.Add(this.pbxPicture);
+            this.Controls.Add(this.lblAppTitle);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblAuthor);
             this.Controls.Add(this.groupBox10);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
@@ -632,10 +771,12 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dgvTitles);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.Text = "FunKiiUNETThingy";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Shown += new System.EventHandler(this.frmMain_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTitles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -654,10 +795,13 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             this.groupBox9.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPicture)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -706,14 +850,28 @@
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTitleTotalSize;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.PictureBox pbxPicture;
+        private System.Windows.Forms.ComboBox cboManualRegion;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtManualID;
+        private System.Windows.Forms.TextBox txtManualTitleKey;
+        private System.Windows.Forms.TextBox txtManualName;
+        private System.Windows.Forms.Button btnManualAdd;
+        private System.Windows.Forms.Label lblManualTitleKeyError;
+        private System.Windows.Forms.Label lblManualTitleIDError;
+        private System.Windows.Forms.Label lblManualNameError;
+        private System.Windows.Forms.Label lblAppTitle;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblAuthor;
+        protected System.Windows.Forms.PictureBox pbxPicture;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
     }
 }
 
