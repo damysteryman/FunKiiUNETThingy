@@ -1,5 +1,8 @@
 # FunKiiUNETThingy Changelog  
 
+v1.1.1 "You're Still my Guinea Pig" Edition.  
+ - Bugfix: handle exception caused by trying to load data from a broken/corrupted titlekeys.json  
+
 v1.1 "You're Still my Guinea Pig" Edition.  
  - Integrated magic.cert into program, no need for external file now  
  - Added ability to auto-update your titlekeys.json file from "That Key Site" upon program start.  

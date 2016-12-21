@@ -710,33 +710,46 @@ namespace FunKiiUNETThingy
         {
             if (File.Exists("titlekeys.json"))
             {
-                titles = JsonConvert.DeserializeObject<List<TitleData>>(File.ReadAllText("titlekeys.json"));
-
-                for (int i = 0; i < titles.Count; i++)
+                try
                 {
-                    if (titles[i].TitleKey == null && titles[i].TicketIsAvailable == false)
+                    titles = JsonConvert.DeserializeObject<List<TitleData>>(File.ReadAllText("titlekeys.json"));
+
+                    for (int i = 0; i < titles.Count; i++)
                     {
-                        // No Ticket or TitleKey available, immposible to use this entry
-                        titles.Remove(titles[i]);
-                        i--;
+                        if (titles[i].TitleKey == null && titles[i].TicketIsAvailable == false)
+                        {
+                            // No Ticket or TitleKey available, immposible to use this entry
+                            titles.Remove(titles[i]);
+                            i--;
+                        }
                     }
+
+                    dgvTitles.DataSource = titles;
+
+                    for (int i = 0; i < dgvTitles.Rows.Count; i++)
+                        dgvTitles.Rows[i].Cells["TitleType"].Value = GetTitleType((string)dgvTitles.Rows[i].Cells["TitleID"].Value);
+
+                    dgvTitles.Columns["TitleID"].DisplayIndex = 0;
+                    dgvTitles.Columns["TitleType"].Visible = true;
+                    dgvTitles.Columns["TitleType"].DisplayIndex = 1;
+                    dgvTitles.Columns["Name"].DisplayIndex = 2;
+                    dgvTitles.Columns["TitleKey"].Visible = false;
+
+                    for (int i = 0; i < dgvTitles.Columns.Count; i++)
+                        dgvTitles.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
+                    ShowHideTitleRows();
                 }
-
-                dgvTitles.DataSource = titles;
-
-                for (int i = 0; i < dgvTitles.Rows.Count; i++)
-                    dgvTitles.Rows[i].Cells["TitleType"].Value = GetTitleType((string)dgvTitles.Rows[i].Cells["TitleID"].Value);
-
-                dgvTitles.Columns["TitleID"].DisplayIndex = 0;
-                dgvTitles.Columns["TitleType"].Visible = true;
-                dgvTitles.Columns["TitleType"].DisplayIndex = 1;
-                dgvTitles.Columns["Name"].DisplayIndex = 2;
-                dgvTitles.Columns["TitleKey"].Visible = false;
-
-                for (int i = 0; i < dgvTitles.Columns.Count; i++)
-                    dgvTitles.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-                ShowHideTitleRows();
+                //catch(NullReferenceException ne)
+                //{
+                //    WriteToLog("ERROR! Cannot load data from titlekeys.json!" + Environment.NewLine + ne.Message + Environment.NewLine);
+                //    WriteToLog("Please check that your titlekeys.json is not corrupt." + Environment.NewLine + "Perhaps Redownload / Update your titlekeys.json and try again?");
+                //}
+                catch (Exception ex)
+                {
+                    WriteToLog("ERROR! Cannot load data from titlekeys.json!" + Environment.NewLine + ex.Message + Environment.NewLine);
+                    WriteToLog("Please check that your titlekeys.json is not corrupt." + Environment.NewLine + "Perhaps Redownload / Update your titlekeys.json and try again?");
+                }
             }
         }
 
