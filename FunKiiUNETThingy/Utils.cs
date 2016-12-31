@@ -67,8 +67,12 @@ namespace FunKiiUNETThingy
         }
 
 
-        public static string GetByteSuffix(int power)
+        public static string GetByteSuffix(int power, bool IEC)
         {
+            string baseStr = "B";
+            if (IEC)
+                baseStr = "iB";
+
             switch (power)
             {
                 case (0):
@@ -76,30 +80,51 @@ namespace FunKiiUNETThingy
                     return "B";
 
                 case (1):
-                    return "KB";
+                    return "K" + baseStr;
 
                 case (2):
-                    return "MB";
+                    return "M" + baseStr;
 
                 case (3):
-                    return "GB";
+                    return "G" + baseStr;
 
+                case (4):
+                    return "T" + baseStr;
             }
         }
 
-        public static string ConvertByteToText(this double byteNum)
+        public static string ConvertByteToText(this double byteNum, bool IEC = false)
         {
             string suffix = "B";
+
+            int baseNum = 1000;
+            if (IEC)
+                baseNum = 1024;
+
             for (int i = 3; i > 0; i--)
             {
-                if (byteNum.CompareTo(Math.Pow(1000, i)) == 1)
+                if (byteNum.CompareTo(Math.Pow(baseNum, i)) == 1)
                 {
-                    byteNum = byteNum / Math.Pow(1000, i);
-                    return byteNum.ToString("N2") + " " + GetByteSuffix(i);
+                    byteNum = byteNum / Math.Pow(baseNum, i);
+                    return byteNum.ToString("N2") + " " + GetByteSuffix(i, IEC);
                 }
             }
             return byteNum.ToString() + " " + suffix;
         }
+
+        //public static string ConvertByteToText2(this double byteNum)
+        //{
+        //    string suffix = "B";
+        //    for (int i = 3; i > 0; i--)
+        //    {
+        //        if (byteNum.CompareTo(Math.Pow(1000, i)) == 1)
+        //        {
+        //            byteNum = byteNum / Math.Pow(1000, i);
+        //            return byteNum.ToString("N2") + " " + GetByteSuffix(i);
+        //        }
+        //    }
+        //    return byteNum.ToString() + " " + suffix;
+        //}
 
         public static long GetFileLength(this string filePath)
         {

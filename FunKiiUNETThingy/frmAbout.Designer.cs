@@ -70,9 +70,9 @@
             this.lblAppTitle.AutoSize = true;
             this.lblAppTitle.Location = new System.Drawing.Point(6, 16);
             this.lblAppTitle.Name = "lblAppTitle";
-            this.lblAppTitle.Size = new System.Drawing.Size(122, 13);
+            this.lblAppTitle.Size = new System.Drawing.Size(98, 13);
             this.lblAppTitle.TabIndex = 35;
-            this.lblAppTitle.Text = "FunKiiUNETThingy v1.0";
+            this.lblAppTitle.Text = "FunKiiUNETThingy";
             // 
             // label7
             // 
@@ -89,7 +89,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(153, 26);
             this.label3.TabIndex = 36;
-            this.label3.Text = "\"You\'re still my Guinea Pig\" Edition";
+            this.label3.Text = "\"Dev-PEBCAK Error\" Edition";
             // 
             // label6
             // 

@@ -10,6 +10,8 @@ namespace FunKiiUNETThingy
     public class Config
     {
         public string keysite { get; set; }
+        public string saveDir { get; set; }
+        private string saveDirDefault = Environment.CurrentDirectory + "\\install";
 
         public bool titleGame { get; set; }
         public bool titleDemo { get; set; }
@@ -36,7 +38,10 @@ namespace FunKiiUNETThingy
         public bool appDlIgnoreExistingContentFiles { get; set; }
         public bool appDlGroupDlsIntoSubfolders { get; set; }
 
+        public bool appFilesize1024 { get; set; }
+
         private const string CONFIG_KEYSITE = "keysite";
+        private const string CONFIG_SAVEDIR = "saveDir";
 
         private const string CONFIG_TITLE_GAME = "titleGame";
         private const string CONFIG_TITLE_DEMO = "titleDemo";
@@ -63,12 +68,15 @@ namespace FunKiiUNETThingy
         private const string CONFIG_DL_IGNORE_EXISTING = "appDlIgnoreExistingContentFiles";
         private const string CONFIG_DL_GROUP_TITLES = "appDlGroupDlsIntoSubfolders";
 
+        private const string CONFIG_APP_FILESIZE1024 = "appFilesize1024";
+
         private const string BLANK_CONFIG = @"{""keysite"": """"}";
 
         public Config()
         {
 
             keysite = "";
+            saveDir = saveDirDefault;
 
             titleGame = true;
             titleDemo = true;
@@ -93,11 +101,13 @@ namespace FunKiiUNETThingy
             appAutoLoadData = false;
             appDlIgnoreExistingContentFiles = true;
             appDlGroupDlsIntoSubfolders = false;
+            appFilesize1024 = true;
         }
 
         public Config
             (
             string _keysite,
+            string _saveDir,
             bool _titleGame,
             bool _titleDemo,
             bool _titleGameDlc,
@@ -117,10 +127,12 @@ namespace FunKiiUNETThingy
             bool _appAutoUpdateTitlekeys,
             bool _appAutoLoadData,
             bool _appDlIgnoreExistingContentFiles,
-            bool _appDlGroupDlsIntoSubfolders
+            bool _appDlGroupDlsIntoSubfolders,
+            bool _appFilesize1024
             )
         {
             keysite = _keysite;
+            saveDir = _saveDir;
 
             titleGame = _titleGame;
             titleDemo = _titleDemo;
@@ -146,6 +158,8 @@ namespace FunKiiUNETThingy
 
             appDlIgnoreExistingContentFiles = _appDlIgnoreExistingContentFiles;
             appDlGroupDlsIntoSubfolders = _appDlGroupDlsIntoSubfolders;
+
+            appFilesize1024 = _appFilesize1024;
         }
 
         public Config(string fileName)
@@ -161,6 +175,12 @@ namespace FunKiiUNETThingy
                     keysite = config[CONFIG_KEYSITE];
                 else
                     keysite = "";
+
+                // Check saveDir has data
+                if (config[CONFIG_SAVEDIR] != null && config[CONFIG_SAVEDIR] != "")
+                    saveDir = config[CONFIG_SAVEDIR];
+                else
+                    saveDir = saveDirDefault;
 
                 // Check selection configs have data
                 if (config[CONFIG_TITLE_GAME] != null)
@@ -265,6 +285,11 @@ namespace FunKiiUNETThingy
                     appDlGroupDlsIntoSubfolders = config[CONFIG_DL_GROUP_TITLES];
                 else
                     appDlGroupDlsIntoSubfolders = false;
+
+                if (config[CONFIG_APP_FILESIZE1024] != null)
+                    appFilesize1024 = config[CONFIG_APP_FILESIZE1024];
+                else
+                    appFilesize1024 = true;
             }
             catch (Exception)
             {

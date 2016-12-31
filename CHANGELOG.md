@@ -1,5 +1,11 @@
 # FunKiiUNETThingy Changelog  
 
+v1.2 "Dev-PEBCAK" Edition  
+ - Bugfix: Actually honour the "Skip download of already existing Content files." setting, instead of always doing it  
+ - Improvement: Now displays Content Download progress in more than just Bytes (KB, MB, GB etc.)  
+ - New: Added setting to toggle between viewing filesizes in base-2 (1024, e.g. MiB) or base-10 (1000, e.g. MB)  
+ - New: Added ability to change the main Download Directory for saving titles instead of using only "AppDir+\install"  
+
 v1.1.1 "You're Still my Guinea Pig" Edition.  
  - Bugfix: handle exception caused by trying to load data from a broken/corrupted titlekeys.json  
 

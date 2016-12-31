@@ -85,7 +85,8 @@ namespace FunKiiUNETThingy
         {
             lbxTitleQueue.MouseDown += lbxTitleQueue_MouseDown;
             WriteToLog("FunKiiUNETThingy Loaded!" + Environment.NewLine);
-            WriteToLog("Titles will be saved in " + Environment.CurrentDirectory + "\\install\\" + Environment.NewLine);
+            //WriteToLog("Titles will be saved in " + Environment.CurrentDirectory + "\\install\\" + Environment.NewLine);
+            
 
             try
             {
@@ -97,6 +98,8 @@ namespace FunKiiUNETThingy
                 WriteToLog("WARNING! Can't access config.json, using default config instead." + Environment.NewLine + ex.Message);
                 config = new Config();
             }
+
+            WriteToLog("Titles will be saved in " + config.saveDir + Environment.NewLine);
             
 
             txtKeySiteUrl.Text = CheckUrlPrefix(config.keysite);
@@ -193,7 +196,7 @@ namespace FunKiiUNETThingy
                 this.BeginInvoke((MethodInvoker) delegate
                 {
                     pbrFileDownload.Value = e.ProgressPercentage;
-                    lblProgressData.Text = String.Format("Downloaded {0:n0} / {1:n0} bytes - {2}%", e.BytesReceived, e.TotalBytesToReceive, e.ProgressPercentage);
+                    lblProgressData.Text = String.Format("Downloaded {0:n0} / {1:n0} bytes ( {3} / {4} ) - {2}%", e.BytesReceived, e.TotalBytesToReceive, e.ProgressPercentage, ((double)e.BytesReceived).ConvertByteToText(config.appFilesize1024), ((double)e.TotalBytesToReceive).ConvertByteToText(config.appFilesize1024));
                 });
         }
 
@@ -379,8 +382,18 @@ namespace FunKiiUNETThingy
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmSettings frm = new frmSettings(config, "config.json");
-            frm.ShowDialog();
+            using (frmSettings frmSet = new frmSettings(config, "config.json"))
+            {
+                DialogResult result = frmSet.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    config = frmSet.config;
+
+                    WriteToLog("Config updated!");
+                    WriteToLog("Titles will be saved in " + config.saveDir + Environment.NewLine);
+                }
+            }
         }
 
         private void frmMain_Shown(object sender, EventArgs e)
@@ -468,13 +481,18 @@ namespace FunKiiUNETThingy
                     string titleType = GetTitleType(titleInfo.TitleID);
                     string saveDir = "";
 
-                    if (config.appDlGroupDlsIntoSubfolders)
-                        saveDir = String.Format(@"{0}\install\{1} ({2})\{1} ({2}) [{3}] [{4}]", Environment.CurrentDirectory, titleInfo.Name.SanitizeFileName(), titleInfo.Region, titleType, titleInfo.TitleID);
-                    else
-                        saveDir = String.Format(@"{0}\install\{1} ({2}) [{3}] [{4}]", Environment.CurrentDirectory, titleInfo.Name.SanitizeFileName(), titleInfo.Region, titleType, titleInfo.TitleID);
+                    //if (config.appDlGroupDlsIntoSubfolders)
+                    //    saveDir = String.Format(@"{0}\install\{1} ({2})\{1} ({2}) [{3}] [{4}]", Environment.CurrentDirectory, titleInfo.Name.SanitizeFileName(), titleInfo.Region, titleType, titleInfo.TitleID);
+                    //else
+                    //    saveDir = String.Format(@"{0}\install\{1} ({2}) [{3}] [{4}]", Environment.CurrentDirectory, titleInfo.Name.SanitizeFileName(), titleInfo.Region, titleType, titleInfo.TitleID);
 
-                    if (!(Directory.Exists(Environment.CurrentDirectory + "\\install")))
-                        Directory.CreateDirectory(Environment.CurrentDirectory + "\\install");
+                    if (config.appDlGroupDlsIntoSubfolders)
+                        saveDir = String.Format(@"{0}\{1} ({2})\{1} ({2}) [{3}] [{4}]", config.saveDir, titleInfo.Name.SanitizeFileName(), titleInfo.Region, titleType, titleInfo.TitleID);
+                    else
+                        saveDir = String.Format(@"{0}\{1} ({2}) [{3}] [{4}]", config.saveDir, titleInfo.Name.SanitizeFileName(), titleInfo.Region, titleType, titleInfo.TitleID);
+
+                    //if (!(Directory.Exists(Environment.CurrentDirectory + "\\install")))
+                    //    Directory.CreateDirectory(Environment.CurrentDirectory + "\\install");
                     if (!(Directory.Exists(saveDir)))
                         Directory.CreateDirectory(saveDir);
 
@@ -507,7 +525,7 @@ namespace FunKiiUNETThingy
                     for (int i = 0; i < tmd.GetContentCount(); i++)
                         titleSize += tmd.GetContentSize((uint)i);
 
-                    string titleSizeStr = String.Format("Estimated Content Size: {0:n0} bytes. (Approx. {1})", titleSize, ((double)titleSize).ConvertByteToText());
+                    string titleSizeStr = String.Format("Estimated Content Size: {0:n0} bytes. (Approx. {1})", titleSize, ((double)titleSize).ConvertByteToText(config.appFilesize1024));
                     lblTitleTotalSize.Invoke(new UpdateTitleTotalSizeCallBack(this.UpdateTitleTotalSize), new object[] { titleSizeStr });
 
                     string currentTitleLogStr = String.Format("{0}" + Environment.NewLine + "{1}", Path.GetFileName(saveDir), titleSizeStr);
@@ -620,7 +638,7 @@ namespace FunKiiUNETThingy
                             lblProgressContent.Invoke(new UpdateProgressContentCallBack(this.UpdateProgressContent), new object[] { currentContentLogStr });
 
                             string contentFilePath = saveDir + "\\" + cidStr + ".app";
-                            if (File.Exists(contentFilePath) && (ulong)contentFilePath.GetFileLength() == tmd.GetContentSize(i))
+                            if (config.appDlIgnoreExistingContentFiles && File.Exists(contentFilePath) && (ulong)contentFilePath.GetFileLength() == tmd.GetContentSize(i))
                             {
                                 txtLog.Invoke(new WriteToLogCallBack(this.WriteToLog), new object[] { "File: " + cidStr + ".app already exists with correct file size, skipping download..." });
                             }
@@ -698,11 +716,6 @@ namespace FunKiiUNETThingy
 
                 lbxTitleQueue.Items.Add(new KeyValuePair<TitleData, string>(_titleData, titleDesc));
                 lbxTitleQueue.DisplayMember = "Value";
-                //if (!(lbxTitleQueue.Items.Contains(listItem)))
-                //{
-                //    lbxTitleQueue.Items.Add(new KeyValuePair<TitleData, string>(_titleData, titleDesc));
-                //    lbxTitleQueue.DisplayMember = "Value";
-                //}
             }
         }
 
@@ -740,11 +753,6 @@ namespace FunKiiUNETThingy
 
                     ShowHideTitleRows();
                 }
-                //catch(NullReferenceException ne)
-                //{
-                //    WriteToLog("ERROR! Cannot load data from titlekeys.json!" + Environment.NewLine + ne.Message + Environment.NewLine);
-                //    WriteToLog("Please check that your titlekeys.json is not corrupt." + Environment.NewLine + "Perhaps Redownload / Update your titlekeys.json and try again?");
-                //}
                 catch (Exception ex)
                 {
                     WriteToLog("ERROR! Cannot load data from titlekeys.json!" + Environment.NewLine + ex.Message + Environment.NewLine);
@@ -925,21 +933,6 @@ namespace FunKiiUNETThingy
             }
         }
 
-        //private string CheckTitleKeyUrl(string url)
-        //{
-        //    //byte[] thatSiteMd5 = Encoding.ASCII.GetBytes("d098abb93c29005dbd07deb43d81c5df");
-        //    byte[] thatSiteMd5 = new byte[16] { 0xd0, 0x98, 0xab, 0xb9, 0x3c, 0x29, 0x00, 0x5d, 0xbd, 0x07, 0xde, 0xb4, 0x3d, 0x81, 0xc5, 0xdf };
-        //    MD5 md5 = MD5.Create();
-        //    byte[] hash = md5.ComputeHash(Encoding.ASCII.GetBytes(url));
-
-        //    if (hash.SequenceEqual(thatSiteMd5))
-        //        url = "http://" + url + "/json";
-
-        //    Console.WriteLine(url);
-
-        //    return url;
-        //}
-
         private void ManualTitleKeyErrorDisplay()
         {
             txtManualTitleKey.BackColor = Color.Salmon;
@@ -999,8 +992,5 @@ namespace FunKiiUNETThingy
         }
 
         #endregion methods
-
-
-
     }
 }

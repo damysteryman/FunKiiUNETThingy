@@ -31,22 +31,26 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkAutoLoadData = new System.Windows.Forms.CheckBox();
             this.chkAutoUpdateTitlekeys = new System.Windows.Forms.CheckBox();
-            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblSaveResult = new System.Windows.Forms.Label();
             this.chkGroupDownloads = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnDirSelect = new System.Windows.Forms.Button();
+            this.txtSaveDir = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.chkFileDownloadSkip = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkFilesize1024 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -80,19 +84,19 @@
             this.chkAutoUpdateTitlekeys.Text = "Auto-Update titlekeys.json on program start.";
             this.chkAutoUpdateTitlekeys.UseVisualStyleBackColor = true;
             // 
-            // btnSaveSettings
+            // btnOK
             // 
-            this.btnSaveSettings.Location = new System.Drawing.Point(71, 399);
-            this.btnSaveSettings.Name = "btnSaveSettings";
-            this.btnSaveSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveSettings.TabIndex = 1;
-            this.btnSaveSettings.Text = "Save";
-            this.btnSaveSettings.UseVisualStyleBackColor = true;
-            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            this.btnOK.Location = new System.Drawing.Point(69, 385);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 1;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnSaveSettings_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(187, 399);
+            this.btnCancel.Location = new System.Drawing.Point(185, 385);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -102,10 +106,9 @@
             // 
             // lblSaveResult
             // 
-            this.lblSaveResult.AutoSize = true;
-            this.lblSaveResult.Location = new System.Drawing.Point(12, 313);
+            this.lblSaveResult.Location = new System.Drawing.Point(12, 355);
             this.lblSaveResult.Name = "lblSaveResult";
-            this.lblSaveResult.Size = new System.Drawing.Size(0, 13);
+            this.lblSaveResult.Size = new System.Drawing.Size(311, 27);
             this.lblSaveResult.TabIndex = 3;
             // 
             // chkGroupDownloads
@@ -119,15 +122,44 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnDirSelect);
+            this.groupBox2.Controls.Add(this.txtSaveDir);
+            this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.chkFileDownloadSkip);
             this.groupBox2.Controls.Add(this.chkGroupDownloads);
             this.groupBox2.Location = new System.Drawing.Point(13, 80);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(312, 161);
+            this.groupBox2.Size = new System.Drawing.Size(312, 213);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Download Settings";
+            // 
+            // btnDirSelect
+            // 
+            this.btnDirSelect.Location = new System.Drawing.Point(219, 174);
+            this.btnDirSelect.Name = "btnDirSelect";
+            this.btnDirSelect.Size = new System.Drawing.Size(75, 23);
+            this.btnDirSelect.TabIndex = 6;
+            this.btnDirSelect.Text = "Select Dir";
+            this.btnDirSelect.UseVisualStyleBackColor = true;
+            this.btnDirSelect.Click += new System.EventHandler(this.btnDirSelect_Click);
+            // 
+            // txtSaveDir
+            // 
+            this.txtSaveDir.Location = new System.Drawing.Point(6, 176);
+            this.txtSaveDir.Name = "txtSaveDir";
+            this.txtSaveDir.Size = new System.Drawing.Size(207, 20);
+            this.txtSaveDir.TabIndex = 5;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 159);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Downloads Directory:";
             // 
             // groupBox3
             // 
@@ -183,39 +215,40 @@
             this.chkFileDownloadSkip.AutoSize = true;
             this.chkFileDownloadSkip.Location = new System.Drawing.Point(6, 20);
             this.chkFileDownloadSkip.Name = "chkFileDownloadSkip";
-            this.chkFileDownloadSkip.Size = new System.Drawing.Size(207, 17);
+            this.chkFileDownloadSkip.Size = new System.Drawing.Size(247, 17);
             this.chkFileDownloadSkip.TabIndex = 0;
-            this.chkFileDownloadSkip.Text = "Skip download of already existing files.";
+            this.chkFileDownloadSkip.Text = "Skip download of already existing Content files.";
             this.chkFileDownloadSkip.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // groupBox4
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 259);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "NOTE:";
+            this.groupBox4.Controls.Add(this.chkFilesize1024);
+            this.groupBox4.Location = new System.Drawing.Point(13, 293);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(312, 59);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Cosmetic Settings";
             // 
-            // label6
+            // chkFilesize1024
             // 
-            this.label6.Location = new System.Drawing.Point(12, 272);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(313, 27);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "These settings will come info effect once you restart the application.";
+            this.chkFilesize1024.Location = new System.Drawing.Point(4, 14);
+            this.chkFilesize1024.Name = "chkFilesize1024";
+            this.chkFilesize1024.Size = new System.Drawing.Size(268, 39);
+            this.chkFilesize1024.TabIndex = 0;
+            this.chkFilesize1024.Text = "Display Filesizes using base-2 instead of base-10 (1024 vs 1000)";
+            this.chkFilesize1024.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(339, 435);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(339, 420);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lblSaveResult);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSaveSettings);
+            this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmSettings";
             this.Text = "Settings";
@@ -226,8 +259,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -236,7 +269,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chkAutoLoadData;
         private System.Windows.Forms.CheckBox chkAutoUpdateTitlekeys;
-        private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblSaveResult;
         private System.Windows.Forms.CheckBox chkGroupDownloads;
@@ -247,7 +280,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox chkFileDownloadSkip;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnDirSelect;
+        private System.Windows.Forms.TextBox txtSaveDir;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox chkFilesize1024;
     }
 }
