@@ -200,6 +200,12 @@ namespace FunKiiUNETThingy
                 });
         }
 
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                ShowHideTitleRows();
+        }
+
         private void lbxTitleQueue_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
